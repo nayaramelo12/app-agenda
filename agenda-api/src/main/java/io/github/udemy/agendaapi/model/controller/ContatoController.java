@@ -2,13 +2,15 @@ package io.github.udemy.agendaapi.model.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.Part;
+import javax.transaction.Transactional;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -36,6 +38,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 public class ContatoController {
 
+	@Autowired
 	private final ContatoRepository repository;
 	
 	@PostMapping
@@ -56,6 +59,14 @@ public class ContatoController {
 		Sort sort = Sort.by(Sort.Direction.ASC,"nome");
 		PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina, sort);
 		return repository.findAll(pageRequest);
+	}
+	
+	@GetMapping("/{nome}")
+	@Transactional
+	public List<Contato> findContatoByName(@PathVariable String nome) throws NotFoundException {
+		return repository.findByNomeContainingIgnoreCase(nome);
+		
+		
 	}
 	
 	@PatchMapping("{id}/favorito")

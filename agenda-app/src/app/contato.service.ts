@@ -31,4 +31,8 @@ export class ContatoService {
   upload(contato: Contato, formData: FormData) : Observable<any>{
     return this.http.put(`${this.url}/${contato.id}/foto`, formData, { responseType: 'blob' });
   }
+
+  pesquisar(nome: any) : Observable<Contato[]>{
+    return this.http.get<any>(`${this.url}/${nome}`);
+  }
 }

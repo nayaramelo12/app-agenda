@@ -9,10 +9,18 @@
             <mat-icon>list</mat-icon>
             Todos
         </ng-template>
+
+        <div class="full-width" style="text-align: right;">
+            <mat-form-field >
+                <input matInput name="nome" type="search" [(ngModel)]="nomePesquisa" placeholder="Pesquisar"/>     
+            </mat-form-field>
+            <button mat-mini-fab color="primary" (click)="pesquisarPorNome()">
+                <mat-icon>search</mat-icon></button>
+            </div>
         <mat-card>
 
             <table mat-table [dataSource]="contatos" class="full-width">
-                  
+
                 <ng-container matColumnDef="foto">
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let contato">
@@ -52,6 +60,10 @@
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
                 <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
             </table>
+            <br />
+            <span *ngIf="contatos.length < 1" style="text-align: center;">
+                Nenhum registro encontrado.
+            </span>
 
             <mat-paginator [length]="totalElementos" [pageSize]="tamanhoPagina" [pageSizeOptions]="pageSizeOptions" (page)="paginar($event)">
 

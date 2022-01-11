@@ -25,6 +25,7 @@ export class ContatoComponent implements OnInit {
   pagina = 0; 
   tamanhoPagina = 5;
   pageSizeOptions : number[] = [5];
+  nomePesquisa : any;
 
   constructor(private service: ContatoService, private fb : FormBuilder, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -52,6 +53,13 @@ export class ContatoComponent implements OnInit {
   favoritar(contato: Contato){
     this.service.favorite(contato).subscribe(response => {
       contato.favorito = !contato.favorito;
+    })
+  }
+
+  pesquisarPorNome(){
+    console.log(this.nomePesquisa);
+    this.service.pesquisar(this.nomePesquisa).subscribe(response =>{
+      this.contatos = response;
     })
   }
 

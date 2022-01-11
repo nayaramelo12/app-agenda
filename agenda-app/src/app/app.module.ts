@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -40,6 +41,7 @@ import { ContatoDetalheComponent } from './contato-detalhe/contato-detalhe.compo
     MatDialogModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
