@@ -1,4 +1,4 @@
-package io.github.udemy.agendaapi.model.entity;
+package io.github.udemy.agendaapi.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,12 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Contato {
 
 	@Id

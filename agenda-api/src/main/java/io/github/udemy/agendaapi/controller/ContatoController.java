@@ -1,4 +1,4 @@
-package io.github.udemy.agendaapi.model.controller;
+package io.github.udemy.agendaapi.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.udemy.agendaapi.model.entity.Contato;
-import io.github.udemy.agendaapi.model.repository.ContatoRepository;
+import io.github.udemy.agendaapi.model.Contato;
+import io.github.udemy.agendaapi.repository.ContatoRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -63,10 +63,8 @@ public class ContatoController {
 	
 	@GetMapping("/{nome}")
 	@Transactional
-	public List<Contato> findContatoByName(@PathVariable String nome) throws NotFoundException {
+	public List<Contato> findContatoByName(@PathVariable String nome){
 		return repository.findByNomeContainingIgnoreCase(nome);
-		
-		
 	}
 	
 	@PatchMapping("{id}/favorito")
